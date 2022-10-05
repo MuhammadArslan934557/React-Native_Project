@@ -1,23 +1,23 @@
 import { useState } from 'react';
 import { StyleSheet, View, Text, Button, TextInput, Modal, Image } from 'react-native';
-
-function GoalInput(props) {
+import { GoalInputProps } from '../App';
+function GoalInput(props:GoalInputProps) {
     const [enteredGoalText, setEnteredGoalText] = useState('');
     const updateGoalrequest = props.updateGoal;
     const [goal, setGoal] = useState("");
    
-    const goalHandler = (enteredText) => {
+    const goalHandler = (enteredText : string) => {
         setGoal(enteredText);
     }
     const goalListHandler = () => {
 
-        props.userGoalInputData(goal);
+        // props.userGoalInputData(goal);
         setGoal('');
-        props.cancelModal(false);
+        props.onCancel();
         props.onUpdatGoalRequest();
     }
 
-    function goalInputHandler(enteredText) {
+    function goalInputHandler(enteredText : string) {
         setEnteredGoalText(enteredText);
     }
     function addGoalHandler() {
@@ -31,7 +31,7 @@ function GoalInput(props) {
                 {
                     !updateGoalrequest && <TextInput style={styles.textInput}
                         placeholder="Your course goal!"
-                        onChangeText={goalHandler}
+                         onChangeText={goalHandler}
                         defaultValue={props.upDateGoalText}
                
                     />}
@@ -40,7 +40,7 @@ function GoalInput(props) {
                     updateGoalrequest && <TextInput style={styles.textInput}
                         placeholder="Your course goal!"
                         defaultValue={props.upDateGoalText}
-                        onChangeText={goalHandler}
+                         onChangeText={goalHandler}
                     />}
 
                 <View style={styles.buttonContainer}>
